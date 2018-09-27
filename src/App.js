@@ -14,9 +14,10 @@ library.add(faUser)
 class App extends Component {
   state = {
     iconsOnCanvas: [
-      {type: 'stroopwafel', pos:{}},
+      {type: 'hand point up', pos:{}},
       {type: 'user', pos:{}}
-    ]
+    ],
+    canvasDimensions: {top: 0, left: 0, right: 584, bottom: 584}
   }
 
   handleDrag = (icon, event) => {
@@ -33,8 +34,11 @@ class App extends Component {
   render () {
     return (
       <div>
-        <IconMenu availableIcons={this.state.iconsOnCanvas}/>
-        <Canvas handleDrag={this.handleDrag} iconsOnCanvas={this.state.iconsOnCanvas}/>
+        <IconMenu availableIcons={this.state.iconsOnCanvas} />
+        <Canvas 
+        handleDrag={this.handleDrag} 
+        iconsOnCanvas={this.state.iconsOnCanvas}
+        canvasDimensions={this.state.canvasDimensions}/>
       </div>
     )
   }

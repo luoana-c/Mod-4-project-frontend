@@ -1,15 +1,18 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Button, Icon, Menu } from 'semantic-ui-react'
+
+import '../css/canvas.css'
 
 const IconMenu = (props) => {
   return (
-    <div className='ui icon menu'>
-        {props.availableIcons.map(icon => {
-          return <button className="ui icon button item">
-            <FontAwesomeIcon icon={icon.type} />
-          </button>
-        })}
-    </div>
+    <Menu icon vertical>
+      {props.availableIcons.map(icon => {
+        return <Menu.Item name='gamepad'>
+          <Icon name={icon.type} />
+        </Menu.Item>
+      })}
+    </Menu>
   )
 }
 

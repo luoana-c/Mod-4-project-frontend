@@ -1,5 +1,5 @@
 import React from 'react'
-import DraggableIcon from '../components/Icon'
+import DraggableIcon from '../components/DraggableIcon'
 import '../css/canvas.css'
 import DraggableShape from '../components/Shape';
 

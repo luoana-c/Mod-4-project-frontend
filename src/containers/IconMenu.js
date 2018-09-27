@@ -8,8 +8,8 @@ const IconMenu = (props) => {
   return (
     <Menu icon vertical>
       {props.availableIcons.map(icon => {
-        return <Menu.Item name='gamepad'>
-          <Icon name={icon.type} />
+        return <Menu.Item name={icon.type} onClick={() => props.addToCanvas(icon)}>
+          <Icon name={icon.type}/>
         </Menu.Item>
       })}
     </Menu>

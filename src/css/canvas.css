@@ -1,14 +1,18 @@
+div{
+    border: 1px solid red;
+}
+
 #root {
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .canvas {
     width: 600px;
     height: 600px;
     border: 5px solid black;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 0;
+    margin-right: 0;
     position: relative;
     overflow: auto;
     padding: 0;

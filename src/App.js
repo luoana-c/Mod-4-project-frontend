@@ -8,11 +8,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel, faUser } from '@fortawesome/free-solid-svg-icons'
 
+import iconData from './data/iconData'
+
 library.add(faStroopwafel)
 library.add(faUser)
 
 class App extends Component {
   state = {
+    iconsOnMenu: iconData,
     iconsOnCanvas: [
       {type: 'hand point up', pos:{}},
       {type: 'user', pos:{}}
@@ -30,15 +33,25 @@ class App extends Component {
     //
   }
   
+  addToCanvas = (icon) => {
+    let newArray = [...this.state.iconsOnCanvas, icon ]
+    this.setState({ iconsOnCanvas: newArray })
+  }
 
   render () {
     return (
-      <div>
-        <IconMenu availableIcons={this.state.iconsOnCanvas} />
+      <div className="main-container">
+        <div className="button-menu in-container">
+          <IconMenu 
+          availableIcons={this.state.iconsOnMenu} 
+          addToCanvas={this.addToCanvas}/>
+        </div>
+        <div className="in-container">
         <Canvas 
-        handleDrag={this.handleDrag} 
-        iconsOnCanvas={this.state.iconsOnCanvas}
-        canvasDimensions={this.state.canvasDimensions}/>
+            handleDrag={this.handleDrag} 
+            iconsOnCanvas={this.state.iconsOnCanvas}
+            canvasDimensions={this.state.canvasDimensions}/>
+        </div>   
       </div>
     )
   }

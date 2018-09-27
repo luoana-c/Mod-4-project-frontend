@@ -1,21 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+
+import './App.css'
+import Canvas from './containers/Canvas'
+import IconMenu from './containers/IconMenu'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel, faUser } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStroopwafel)
+library.add(faUser)
 
 class App extends Component {
-  render() {
+  state = {
+    iconsOnCanvas: [
+      {type: 'stroopwafel', pos:{}},
+      {type: 'user', pos:{}}
+    ]
+  }
+
+  handleDrag = (icon, event) => {
+    const iconIndex = this.state.iconsOnCanvas.indexOf(icon)
+    const icons = this.state.iconsOnCanvas
+    icons[iconIndex].pos = {x: event.x, y: event.y}
+    this.setState({
+      iconsOnCanvas: icons
+    })
+    //
+  }
+  
+
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <IconMenu availableIcons={this.state.iconsOnCanvas}/>
+        <Canvas handleDrag={this.handleDrag} iconsOnCanvas={this.state.iconsOnCanvas}/>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

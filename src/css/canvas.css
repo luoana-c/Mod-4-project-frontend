@@ -1,0 +1,13 @@
+.canvas {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    position: relative;
+    overflow: auto;
+    padding: 0;
+}
+
+.image {
+    width: 16px;
+    height: 16px;
+}

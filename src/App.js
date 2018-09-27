@@ -17,9 +17,10 @@ class App extends Component {
   state = {
     iconsOnMenu: iconData,
     iconsOnCanvas: [
-      {type: 'hand point up', pos:{}},
-      {type: 'user', pos:{}}
+      // {type: 'hand point up', pos:{}},
+      // {type: 'user', pos:{}}
     ],
+    selectedIcon: undefined,
     canvasDimensions: {top: 0, left: 0, right: 584, bottom: 584}
   }
 
@@ -38,6 +39,17 @@ class App extends Component {
     this.setState({ iconsOnCanvas: newArray })
   }
 
+  removeFromCanvas = (icon) => {
+    let array = [...this.state.iconsOnCanvas]
+    let newArray = array.filter( i => i !== icon )
+    this.setState({ iconsOnCanvas: newArray })
+    // this.setState({ iconsOnCanvas: newArray })
+  }
+
+  selectIcon = (icon) => {
+    this.setState( { selectedIcon: icon })
+  }
+
   render () {
     return (
       <div className="main-container">
@@ -50,7 +62,9 @@ class App extends Component {
         <Canvas 
             handleDrag={this.handleDrag} 
             iconsOnCanvas={this.state.iconsOnCanvas}
-            canvasDimensions={this.state.canvasDimensions}/>
+            canvasDimensions={this.state.canvasDimensions}
+            removeFromCanvas={this.removeFromCanvas}
+            selectIcon={this.selectIcon}/>
         </div>   
       </div>
     )

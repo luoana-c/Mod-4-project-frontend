@@ -4,10 +4,9 @@ import Draggable from 'react-draggable'
 import '../css/canvas.css'
 
 const DraggableIcon = (props) => {
-    console.log(props)
   return (
     <Draggable onDrag={props.handleDrag} bounds={props.canvasDimensions}>
-      <div style={{width: 16, height: 16, position: 'absolute'}}>
+      <div style={{width: 16, height: 16, position: 'absolute'}} onClick={() => props.selectIcon(props.icon)}>
         <Icon name={props.icon.type} />
       </div>
     </Draggable>

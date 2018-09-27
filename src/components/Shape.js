@@ -4,7 +4,7 @@ import Draggable from 'react-draggable'
 import '../css/canvas.css'
 
 const DraggableShape = (props) => {
-    console.log(props)
+    // console.log(props)
   return (
     <Draggable onDrag={props.handleDrag} bounds={props.canvasDimensions}>
       <div style={{width: 16, height: 16, position: 'absolute'}} className={`shapeHolder ${props.shapeType}`}>

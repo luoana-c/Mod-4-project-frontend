@@ -16,27 +16,35 @@ library.add(faUser)
 
 class App extends Component {
   state = {
+    user: { name: "test_user", id: 1 },
     iconsOnMenu: iconData,
-    iconsOnCanvas: [
-      // {type: 'hand point up', pos:{}},
-      // {type: 'user', pos:{}}
-    ],
+    project: { 
+      id: undefined,
+      name: 'untitled',
+      content: { 
+        iconsOnCanvas: [
+          // {type: 'hand point up', pos:{}},
+          // {type: 'user', pos:{}}
+        ]}
+      },
     selectedIcon: undefined,
     canvasDimensions: {top: 0, left: 0, right: 584, bottom: 584}
   }
 
   handleDrag = (icon, event) => {
-    const iconIndex = this.state.iconsOnCanvas.indexOf(icon)
-    const icons = this.state.iconsOnCanvas
+    const iconIndex = this.state.project.content.iconsOnCanvas.indexOf(icon)
+    const icons = this.state.project.content.iconsOnCanvas
     icons[iconIndex].pos = {x: event.x, y: event.y}
-    this.setState({
-      iconsOnCanvas: icons
-    })
+    this.setState({project: 
+      {...this.state.project, content: {
+        iconsOnCanvas: icons}
+      }}
+    )
     //
   }
   
   addToCanvas = (icon) => {
-    let newArray = [...this.state.iconsOnCanvas, icon ]
+    let newArray = [...this.state.project.content.iconsOnCanvas, icon ]
     this.setState({ iconsOnCanvas: newArray })
   }
 
@@ -55,11 +63,44 @@ class App extends Component {
       this.setState( { selectedIcon: undefined })
   }
 
+  saveProject = () => {
+    
+    let project = JSON.stringify(this.state.iconsOnCanvas)
+
+      const options = {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name:"untitled", content: project, user_id: this.state.user.id})
+      }
+
+      return fetch(`http://localhost:3001/projects`, options)
+    }
+
+    newProject = () => {
+
+      let project = ''
+
+      const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name:"untitled", content: project, user_id: this.state.user.id})
+      }
+
+      return fetch(`http://localhost:3001/projects`, options)
+      .then( resp => resp.json())
+      .then(newProject => this.setState({ project: newProject }))
+    
+
+    }
+
   render () {
+    // saveProject().then(newProject => this.setState({ project: newProject }))
     return (
       <div className="main-container">
         <div className="menu">
-          <FileMenu />
+          <FileMenu 
+          saveProject={this.saveProject}
+          newProject={this.newProject}/>
         </div>
         <div className="button-menu in-container">
           <IconMenu 

@@ -14,12 +14,12 @@ export default class FileMenu extends React.Component {
         <Menu.Item
           name='New project'
           active={activeItem === 'New project'}
-          onClick={this.handleItemClick}
+          onClick={this.props.newProject}
         />
         <Menu.Item
           name='Save project'
           active={activeItem === 'Save project'}
-          onClick={this.handleItemClick}
+          onClick={this.props.saveProject}
         />
         <Dropdown item text='Open project'>
           <Dropdown.Menu>

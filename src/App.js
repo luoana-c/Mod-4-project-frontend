@@ -69,35 +69,35 @@ class App extends Component {
       this.setState( { selectedIcon: undefined })
   }
 
-  saveProject = () => {
+  saveProject = (projectName) => {
     
     let project = JSON.stringify(this.state.project.content.iconsOnCanvas)
 
       const options = {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name:"untitled", content: project, user_id: this.state.user.id})
+        body: JSON.stringify({name:projectName, content: project, user_id: this.state.user.id})
       }
 
       return fetch(`http://localhost:3001/projects`, options)
     }
 
-    newProject = () => {
+  newProject = () => {
 
-      let project = ''
+    let project = ''
 
-      const options = {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name:"titled", content: project, user_id: this.state.user.id})
-      }
-
-      return fetch(`http://localhost:3001/projects`, options)
-      .then( resp => resp.json())
-      .then(newProject => this.setState({ project: newProject }))
-    
-
+    const options = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({name:"titled", content: project, user_id: this.state.user.id})
     }
+
+    return fetch(`http://localhost:3001/projects`, options)
+    .then( resp => resp.json())
+    .then(newProject => this.setState({ project: newProject }))
+  
+
+  }
 
   render () {
     // saveProject().then(newProject => this.setState({ project: newProject }))

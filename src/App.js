@@ -45,14 +45,20 @@ class App extends Component {
   
   addToCanvas = (icon) => {
     let newArray = [...this.state.project.content.iconsOnCanvas, icon ]
-    this.setState({ iconsOnCanvas: newArray })
+    this.setState({project: 
+      {...this.state.project, content: {
+        iconsOnCanvas: newArray}
+      }}) 
   }
 
   removeFromCanvas = (icon) => {
-    let array = [...this.state.iconsOnCanvas]
+    let array = [...this.state.project.content.iconsOnCanvas]
     let newArray = array.filter( i => i !== icon )
-    this.setState({ iconsOnCanvas: newArray })
-    // this.setState({ iconsOnCanvas: newArray })
+    this.setState({project: 
+      {...this.state.project, content: {
+        iconsOnCanvas: newArray}
+      }})
+   
   }
 
   selectIcon = (icon) => {
@@ -65,7 +71,7 @@ class App extends Component {
 
   saveProject = () => {
     
-    let project = JSON.stringify(this.state.iconsOnCanvas)
+    let project = JSON.stringify(this.state.project.content.iconsOnCanvas)
 
       const options = {
         method: "PATCH",
@@ -83,7 +89,7 @@ class App extends Component {
       const options = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name:"untitled", content: project, user_id: this.state.user.id})
+        body: JSON.stringify({name:"titled", content: project, user_id: this.state.user.id})
       }
 
       return fetch(`http://localhost:3001/projects`, options)
@@ -110,7 +116,7 @@ class App extends Component {
         <div className="in-container">
         <Canvas 
             handleDrag={this.handleDrag} 
-            iconsOnCanvas={this.state.iconsOnCanvas}
+            iconsOnCanvas={this.state.project.content.iconsOnCanvas}
             canvasDimensions={this.state.canvasDimensions}
             removeFromCanvas={this.removeFromCanvas}
             selectIcon={this.selectIcon}/>

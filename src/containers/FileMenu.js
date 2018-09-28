@@ -1,21 +1,44 @@
 import React from 'react'
-import { Menu, Dropdown } from 'semantic-ui-react'
+import { Menu, Dropdown, Header, Modal, Button, Icon } from 'semantic-ui-react'
 
 export default class FileMenu extends React.Component {
-  state = {}
+  state = { modalOpen: false }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleOpen = () => {
+    this.setState( { modalOpen: true } )
+  }
+
+  handleClose = () => {
+    this.setState( { modalOpen: false } )
+  }
+
   render() {
-    const { activeItem } = this.state
+    const { activeItem, modalOpen } = this.state
 
     return (
       <Menu>
-        <Menu.Item
-          name='New project'
-          active={activeItem === 'New project'}
-          onClick={this.props.newProject}
-        />
+        <Menu.Item>
+        <Modal onClose={this.handleClose} open={ modalOpen } trigger={<Button onClick={this.handleOpen}>New Project</Button>} basic size='small'>
+            <Header icon='archive' content='Create New Project' />
+            <Modal.Content>
+              <p>Are you sure you want to create a new project?</p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button onClick={this.handleClose} basic color='red' inverted>
+                <Icon name='remove' /> No
+              </Button>
+              <Button onClick={() => {
+                this.props.newProject()
+                this.handleClose()
+                }} 
+                color='green' inverted>
+                <Icon name='checkmark' />Yes
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        </Menu.Item>
         <Menu.Item
           name='Save project'
           active={activeItem === 'Save project'}
@@ -32,3 +55,5 @@ export default class FileMenu extends React.Component {
     )
   }
 }
+
+// this.props.newProject

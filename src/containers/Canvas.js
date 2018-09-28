@@ -8,7 +8,7 @@ const Canvas = (props) => {
     <div className='canvas'>
       {props.iconsOnCanvas.map(icon => <DraggableIcon handleDrag={event => props.handleDrag(icon, event)} icon={icon} canvasDimensions={props.canvasDimensions}
         removeFromCanvas={props.removeFromCanvas}
-        selectIcon={props.selectIcon}/>)}
+        selectIcon={props.selectIcon} />)}
       <DraggableShape shapeType={'circle'} />
     </div>
   )

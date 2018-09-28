@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Canvas from './containers/Canvas'
 import IconMenu from './containers/IconMenu'
+import FileMenu from './containers/FileMenu'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -47,12 +48,19 @@ class App extends Component {
   }
 
   selectIcon = (icon) => {
-    this.setState( { selectedIcon: icon })
+      this.setState( { selectedIcon: icon })
+  }
+
+  deselectIcon = () => {
+      this.setState( { selectedIcon: undefined })
   }
 
   render () {
     return (
       <div className="main-container">
+        <div className="menu">
+          <FileMenu />
+        </div>
         <div className="button-menu in-container">
           <IconMenu 
           availableIcons={this.state.iconsOnMenu} 

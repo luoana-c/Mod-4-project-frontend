@@ -1,7 +1,14 @@
 .main-container {
  padding: 50px;
+ float:left;
+ margin:0 auto;
 }
 
 .in-container {
   float:left;
+  display: flex;
 }
+
+/* .menu {
+  
+} */

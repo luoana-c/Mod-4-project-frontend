@@ -3,6 +3,7 @@ import { Menu, Dropdown, Header, Modal, Button, Icon } from 'semantic-ui-react'
 
 import SaveProjectButton from '../components/SaveProjectButton'
 import NewProjectButton from '../components/NewProjectButton'
+import OpenProjectButton from '../components/OpenProjectButton';
 
 export default class FileMenu extends React.Component {
   state = { modalOpen: false,
@@ -43,13 +44,7 @@ export default class FileMenu extends React.Component {
         modalOpen={this.modalOpen}
         />
         
-        <Dropdown item text='Open project'>
-          <Dropdown.Menu>
-            <Dropdown.Item>asd</Dropdown.Item>
-            <Dropdown.Item>asd</Dropdown.Item>
-            <Dropdown.Item>asd</Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
+        <OpenProjectButton projects={this.props.projects} openProject={this.props.openProject}/>
       </Menu>
     )
   }

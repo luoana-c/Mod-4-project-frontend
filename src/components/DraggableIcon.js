@@ -5,7 +5,7 @@ import '../css/canvas.css'
 
 const DraggableIcon = (props) => {
   return (
-    <Draggable onDrag={props.handleDrag} bounds={props.canvasDimensions}>
+    <Draggable onDrag={props.handleDrag} bounds={props.canvasDimensions} defaultPosition={props.position}>
       <div
         style={{width: 16, height: 16, position: 'absolute'}}
         onClick={() => {props.selectIcon(props.icon)}}>

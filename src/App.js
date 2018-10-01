@@ -79,7 +79,7 @@ class App extends Component {
         body: JSON.stringify({name:projectName, content: project, user_id: this.state.user.id})
       }
 
-      return fetch(`http://localhost:3001/projects`, options)
+      return fetch(`http://localhost:3002/projects/${this.state.project.id}`, options)
     }
 
   newProject = () => {
@@ -92,11 +92,14 @@ class App extends Component {
       body: JSON.stringify({name:"titled", content: project, user_id: this.state.user.id})
     }
 
-    return fetch(`http://localhost:3001/projects`, options)
+    return fetch(`http://localhost:3002/projects`, options)
     .then( resp => resp.json())
-    .then(newProject => this.setState({ project: newProject }))
-  
-
+    .then(newProject => this.setState({project: 
+      {...this.state.project, 
+        content: { iconsOnCanvas: []},
+        id: newProject.id,
+      }}
+      ))
   }
 
   render () {

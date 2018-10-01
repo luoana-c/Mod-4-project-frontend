@@ -31,7 +31,7 @@ export default class FileMenu extends React.Component {
         handleClose={this.handleClose}
         handleOpen={this.handleOpen}
         projectName={this.state.projectName}
-        saveProject={this.props.saveProject}
+        newProject={this.props.newProject}
         modalOpen={this.modalOpen}
         />
         

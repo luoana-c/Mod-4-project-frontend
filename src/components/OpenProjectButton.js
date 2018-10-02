@@ -6,7 +6,12 @@ const OpenProjectButton = (props) => {
     <Dropdown.Menu>
       {
         props.projects.map(project =>
-          <Dropdown.Item onClick={() => props.openProject(project)}>{`${project.name}`}</Dropdown.Item>
+          <Dropdown.Item 
+            onClick={() => props.openProject(project)}
+            key={`project-${project.id}`}>
+            {`${project.name}`}
+            
+          </Dropdown.Item>
         )}
     </Dropdown.Menu>
   </Dropdown>)

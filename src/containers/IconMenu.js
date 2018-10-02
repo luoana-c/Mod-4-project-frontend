@@ -7,8 +7,11 @@ import '../css/canvas.css'
 const IconMenu = (props) => {
   return (
     <Menu icon vertical>
-      {props.availableIcons.map(icon => {
-        return <Menu.Item name={icon.type} onClick={() => props.addToCanvas(icon)}>
+      {props.availableIcons.map((icon, index) => {
+        return <Menu.Item 
+          name={icon.type} 
+          onClick={() => props.addToCanvas(icon)}
+          key={`menu-icon-${index}`}>
           <Icon name={icon.type} />
         </Menu.Item>
       })}

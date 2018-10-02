@@ -70,6 +70,23 @@ class App extends Component {
   handleDrag = (icon, event) => {
 
     console.log(event)
+
+    if (icon.isTemplate === true) {
+
+    const templateIndex = this.state.currentProject.content.templatesOnCanvas.indexOf(icon)
+    const templates = this.state.currentProject.content.templatesOnCanvas
+      
+    templates[templateIndex].pos = {x: event.layerX, y: event.layerY}
+    
+    this.setState({currentProject: 
+      {...this.state.currentProject, content: {
+        ...this.state.currentProject.content, templatesOnCanvas: templates }
+      }}
+      )
+
+    }
+    else {
+
     const iconIndex = this.state.currentProject.content.iconsOnCanvas.indexOf(icon)
     const icons = this.state.currentProject.content.iconsOnCanvas
       
@@ -80,15 +97,17 @@ class App extends Component {
         ...this.state.currentProject.content, iconsOnCanvas: icons}
       }}
       )
+    }
   }
   
   addToCanvas = (icon) => {
+    icon = JSON.parse(JSON.stringify(icon))
     if (icon.isTemplate === true) {
       let newArray = [...this.state.currentProject.content.templatesOnCanvas, icon ]
       this.setState({currentProject: 
         {...this.state.currentProject, content: {
           ...this.state.currentProject.content, templatesOnCanvas: newArray}
-        }}) 
+        }})
     }
     else {
     let newArray = [...this.state.currentProject.content.iconsOnCanvas, icon ]

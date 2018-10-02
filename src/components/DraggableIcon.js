@@ -1,8 +1,8 @@
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
 import Draggable from 'react-draggable'
+import Resizable from 're-resizable'
 import '../css/canvas.css'
-
 
 const DraggableIcon = (props) => {
   return (
@@ -10,13 +10,15 @@ const DraggableIcon = (props) => {
       onDrag={props.handleDrag}
       bounds={props.canvasDimensions}
       position={props.position}
-      defaultPosition={{ x: 0, y: 0} }
+      defaultPosition={{x: 0, y: 0}}
     >
-      <div
-        style={{width: 16, height: 16, position: 'absolute'}}
-        onClick={() => {props.selectIcon(props.icon)}}>
-        <Icon name={props.icon.type} />
-      </div>
+      <Resizable style={{position: 'absolute'}}>
+        <div
+          style={{width: '100%', height: '100%', position: 'absolute'}}
+          onClick={() => { props.selectIcon(props.icon) }}>
+          <Icon style={{width: '100%', height: '100%'}} name={props.icon.type} />
+        </div>
+      </Resizable>
     </Draggable>
   )
 }

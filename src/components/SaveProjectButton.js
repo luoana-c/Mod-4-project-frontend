@@ -19,14 +19,22 @@ export default class SaveProjectButton extends React.Component {
   render () {
     return (
       <Menu.Item>
-        <Modal onClose={this.handleClose} open={this.state.modalOpen} trigger={<Button onClick={this.handleOpen}>Save Project</Button>} basic size='small'>
+        <Modal 
+        onClose={this.handleClose} 
+        open={this.state.modalOpen} 
+        trigger={<Button onClick={this.handleOpen}>Save Project</Button>} 
+        basic size='small'>
           <Header icon='archive' content='Save Project' />
           <Modal.Content>
             <p>Please name your Project:</p>
-            <input onChange={(event) => this.setState({projectName: event.target.value})} type='text' />
+            <input onChange={(event) => this.setState({projectName: event.target.value})} 
+            type='text' 
+            value={this.props.projectName} />
           </Modal.Content>
           <Modal.Actions>
-            <Button onClick={this.handleClose} basic color='red' inverted>
+            <Button onClick={this.handleClose} 
+            basic color='red' 
+            inverted>
               <Icon name='remove' /> Cancel
             </Button>
             <Button onClick={() => {

@@ -7,6 +7,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Canvas from './containers/Canvas'
 import IconMenu from './containers/IconMenu'
+import TemplateMenu from './containers/TemplateMenu'
 import FileMenu from './containers/FileMenu'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -105,6 +106,10 @@ class App extends Component {
         body: JSON.stringify({name:projectName, content: project, user_id: this.state.user.id})
       }
 
+      this.setState( {...this.state.currentProject, 
+        name: projectName
+      })
+
       return fetch(`http://localhost:3002/projects/${this.state.currentProject.id}`, options)
       .then( resp => resp.json()).then( data => console.log(data))
     }
@@ -138,7 +143,8 @@ class App extends Component {
           saveProject={this.saveProject}
           newProject={this.newProject}
           openProject={this.openProject}
-          projects={this.state.projects}/>
+          projects={this.state.projects}
+          projectName={this.state.currentProject.name}/>
         </div>
         <div className="button-menu in-container">
           <IconMenu 
@@ -152,7 +158,12 @@ class App extends Component {
             canvasDimensions={this.state.canvasDimensions}
             removeFromCanvas={this.removeFromCanvas}
             selectIcon={this.selectIcon}/>
-        </div>   
+        </div>
+        <div className="button-menu in-container">
+          <TemplateMenu 
+          availableIcons={this.state.iconsOnMenu} 
+          addToCanvas={this.addToCanvas}/>
+        </div>
       </div>
     )
   }

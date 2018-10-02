@@ -6,13 +6,8 @@ import NewProjectButton from '../components/NewProjectButton'
 import OpenProjectButton from '../components/OpenProjectButton';
 
 export default class FileMenu extends React.Component {
-  state = { modalOpen: false,
-            projectName: "" }
-
-
-  setProjectName = (name) => {
-    this.setState({projectName:name})
-  }          
+  state = { modalOpen: false }
+ 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleOpen = () => {
@@ -31,7 +26,6 @@ export default class FileMenu extends React.Component {
         <NewProjectButton 
         handleClose={this.handleClose}
         handleOpen={this.handleOpen}
-        projectName={this.state.projectName}
         newProject={this.props.newProject}
         modalOpen={this.modalOpen}
         />
@@ -39,12 +33,14 @@ export default class FileMenu extends React.Component {
         <SaveProjectButton 
         handleClose={this.handleClose}
         handleOpen={this.handleOpen}
-        projectName={this.state.projectName}
         saveProject={this.props.saveProject}
         modalOpen={this.modalOpen}
+        projectName={this.props.projectName}
         />
         
-        <OpenProjectButton projects={this.props.projects} openProject={this.props.openProject}/>
+        <OpenProjectButton 
+        projects={this.props.projects} 
+        openProject={this.props.openProject}/>
       </Menu>
     )
   }

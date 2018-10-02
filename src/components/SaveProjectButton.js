@@ -3,9 +3,8 @@ import { Menu, Dropdown, Header, Modal, Button, Icon } from 'semantic-ui-react'
 
 export default class SaveProjectButton extends React.Component {
 
-  state = { 
-    projectName: '',
-    modalOpen: false 
+  state = {
+    modalOpen: false
   }
 
   handleOpen = () => {
@@ -27,7 +26,7 @@ export default class SaveProjectButton extends React.Component {
           <Header icon='archive' content='Save Project' />
           <Modal.Content>
             <p>Please name your Project:</p>
-            <input onChange={(event) => this.setState({projectName: event.target.value})} 
+            <input onChange={(event) => this.props.changeProjectName(event.target.value)} 
             type='text' 
             value={this.props.projectName} />
           </Modal.Content>
@@ -38,7 +37,7 @@ export default class SaveProjectButton extends React.Component {
               <Icon name='remove' /> Cancel
             </Button>
             <Button onClick={() => {
-              this.props.saveProject(this.state.projectName)
+              this.props.saveProject(this.props.projectName)
               this.handleClose()
             }}
             color='green' inverted>

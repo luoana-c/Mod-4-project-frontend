@@ -37,6 +37,12 @@ class App extends Component {
     canvasDimensions: {top: 0, left: 0, right: 584, bottom: 584}
   }
 
+  changeProjectName = name => {
+    const currentProject = JSON.parse(JSON.stringify(this.state.currentProject))
+    currentProject.name = name
+    this.setState({ currentProject })
+  }
+
   componentDidMount () {
     this.getAllUserProjects()
   }
@@ -139,12 +145,14 @@ class App extends Component {
     return (
       <div className="main-container">
         <div className="menu">
-          <FileMenu 
-          saveProject={this.saveProject}
-          newProject={this.newProject}
-          openProject={this.openProject}
-          projects={this.state.projects}
-          projectName={this.state.currentProject.name}/>
+          <FileMenu
+            saveProject={this.saveProject}
+            newProject={this.newProject}
+            openProject={this.openProject}
+            projects={this.state.projects}
+            projectName={this.state.currentProject.name}
+            changeProjectName={this.changeProjectName}
+          />
         </div>
         <div className="button-menu in-container">
           <IconMenu 

@@ -6,12 +6,13 @@ import DraggableShape from '../components/Shape'
 const Canvas = (props) => {
   return (
     <div className='canvas'>
-      {props.iconsOnCanvas && props.iconsOnCanvas.map(icon => <DraggableIcon handleDrag={event => props.handleDrag(icon, event)} icon={icon} canvasDimensions={props.canvasDimensions}
-        removeFromCanvas={props.removeFromCanvas}
-        selectIcon={props.selectIcon} 
-        position={icon.pos}
+      {props.iconsOnCanvas && props.iconsOnCanvas.map(icon =>
+        <DraggableIcon handleDrag={event => props.handleDrag(icon, event)} icon={icon} canvasDimensions={props.canvasDimensions}
+          removeFromCanvas={props.removeFromCanvas}
+          selectIcon={props.selectIcon} 
+          position={icon.pos}
         />)}
-      <DraggableShape shapeType={'circle'} />
+      {/* <DraggableShape shapeType={'circle'} /> */}
     </div>
   )
 }

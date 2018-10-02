@@ -23,19 +23,20 @@ export default class FileMenu extends React.Component {
 
     return (
       <Menu>
-        <NewProjectButton 
-        handleClose={this.handleClose}
-        handleOpen={this.handleOpen}
-        newProject={this.props.newProject}
-        modalOpen={this.modalOpen}
+        <NewProjectButton
+          handleClose={this.handleClose}
+          handleOpen={this.handleOpen}
+          newProject={this.props.newProject}
+          modalOpen={this.modalOpen}
         />
         
         <SaveProjectButton 
-        handleClose={this.handleClose}
-        handleOpen={this.handleOpen}
-        saveProject={this.props.saveProject}
-        modalOpen={this.modalOpen}
-        projectName={this.props.projectName}
+          handleClose={this.handleClose}
+          handleOpen={this.handleOpen}
+          saveProject={this.props.saveProject}
+          modalOpen={this.modalOpen}
+          projectName={this.props.projectName}
+          changeProjectName={this.props.changeProjectName}
         />
         
         <OpenProjectButton 

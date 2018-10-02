@@ -10,6 +10,8 @@ import IconMenu from './containers/IconMenu'
 import TemplateMenu from './containers/TemplateMenu'
 import FileMenu from './containers/FileMenu'
 
+import templates from '../src/data/templateData'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -23,6 +25,7 @@ class App extends Component {
   state = {
     user: { name: "test_user", id: 1 },
     iconsOnMenu: iconData,
+    templatesOnMenu: templates,
     currentProject: { 
       id: undefined,
       name: 'untitled',
@@ -30,7 +33,10 @@ class App extends Component {
         iconsOnCanvas: [
           // {type: 'hand point up', pos:{}},
           // {type: 'user', pos:{}}
-        ]}
+        ],
+        templatesOnCanvas: [
+        // {type: 'hand point up', pos:{}},
+      ]}
     },
     projects: [],
     selectedIcon: undefined,
@@ -71,17 +77,25 @@ class App extends Component {
     
     this.setState({currentProject: 
       {...this.state.currentProject, content: {
-        iconsOnCanvas: icons}
+        ...this.state.currentProject.content, iconsOnCanvas: icons}
       }}
       )
   }
   
   addToCanvas = (icon) => {
+    if (icon.isTemplate === true) {
+      let newArray = [...this.state.currentProject.content.templatesOnCanvas, icon ]
+      this.setState({currentProject: 
+        {...this.state.currentProject, content: {
+          ...this.state.currentProject.content, templatesOnCanvas: newArray}
+        }}) 
+    }
+    else {
     let newArray = [...this.state.currentProject.content.iconsOnCanvas, icon ]
     this.setState({currentProject: 
       {...this.state.currentProject, content: {
-        iconsOnCanvas: newArray}
-      }}) 
+        ...this.state.currentProject.content, iconsOnCanvas: newArray }
+      }}) }
   }
 
   removeFromCanvas = (icon) => {
@@ -117,7 +131,7 @@ class App extends Component {
       })
 
       return fetch(`http://localhost:3002/projects/${this.state.currentProject.id}`, options)
-      .then( resp => resp.json()).then( data => console.log(data))
+      .then( resp => resp.json()).then( data => this.setState({projects: data }) )
     }
 
   newProject = () => {
@@ -163,13 +177,14 @@ class App extends Component {
         <Canvas 
             handleDrag={this.handleDrag} 
             iconsOnCanvas={this.state.currentProject.content.iconsOnCanvas}
+            templatesOnCanvas={this.state.currentProject.content.templatesOnCanvas}
             canvasDimensions={this.state.canvasDimensions}
             removeFromCanvas={this.removeFromCanvas}
             selectIcon={this.selectIcon}/>
         </div>
         <div className="button-menu in-container">
           <TemplateMenu 
-          availableIcons={this.state.iconsOnMenu} 
+          availableTemplates={this.state.templatesOnMenu} 
           addToCanvas={this.addToCanvas}/>
         </div>
       </div>

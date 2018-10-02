@@ -1,10 +1,10 @@
-// // const templateData = [
-// //   {type: 'hand point up', pos: {}, selected: false},
-// // ]
-// const fileName = "a"
+const templateData = [
+  {
+    type: 'ipad',
+    pos: {},
+    selected: false,
+    isTemplate: true
+  }
+]
 
-// const templateData = require(`../data/templates/${fileName}.png`)
-
-// // Delete extra props if not needed
-
-// export default templateData
+export default templateData

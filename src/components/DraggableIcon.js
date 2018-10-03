@@ -16,6 +16,7 @@ const DraggableIcon = (props) => {
     >
       <Resizable  
         className='draggable-icon'
+        
         defaultSize={{
           width: 30,
           height: 30
@@ -27,6 +28,7 @@ const DraggableIcon = (props) => {
           position: 'absolute'
         }}
         lockAspectRatio={true}
+        onResize={props.handleResize}
       >
         {/* <div
           style={{width: '100%', height: '100%', position: 'absolute'}}

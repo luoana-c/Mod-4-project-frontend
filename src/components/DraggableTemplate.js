@@ -17,6 +17,7 @@ const DraggableTemplate = (props) => {
     >
       <Resizable
         className='draggable-template'
+        size={props.size} //Problem 
         defaultSize={{
           width: 150,
           height: 200
@@ -28,6 +29,7 @@ const DraggableTemplate = (props) => {
           position: 'absolute'
         }}
         lockAspectRatio={true}
+        onResize={props.handleResize}
       >
 
       { /* <div

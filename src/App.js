@@ -100,6 +100,38 @@ class App extends Component {
     }
   }
   
+  handleResize = (icon, event) => {
+
+    console.log(event.target.offsetWidth, event.target.offsetHeight)
+
+    if (icon.isTemplate === true) {
+
+    const templateIndex = this.state.currentProject.content.templatesOnCanvas.indexOf(icon)
+    const templates = this.state.currentProject.content.templatesOnCanvas
+      
+    templates[templateIndex].size = {width: event.target.offsetWidth, height: event.target.offsetHeight}
+    
+    this.setState({currentProject: 
+      {...this.state.currentProject, content: {
+        ...this.state.currentProject.content, templatesOnCanvas: templates }
+      }}
+      )
+
+    }
+    else {
+
+    const iconIndex = this.state.currentProject.content.iconsOnCanvas.indexOf(icon)
+    const icons = this.state.currentProject.content.iconsOnCanvas
+      
+    icons[iconIndex].size = {width: event.target.offsetWidth, height: event.target.offsetHeight}
+    
+    this.setState({currentProject: 
+      {...this.state.currentProject, content: {
+        ...this.state.currentProject.content, iconsOnCanvas: icons}
+      }}
+      )
+    }
+  }
   addToCanvas = (icon) => {
     icon = JSON.parse(JSON.stringify(icon))
     if (icon.isTemplate === true) {
@@ -117,15 +149,15 @@ class App extends Component {
       }}) }
   }
 
-  removeFromCanvas = (icon) => {
-    let array = [...this.state.currentProject.content.iconsOnCanvas]
-    let newArray = array.filter( i => i !== icon )
-    this.setState({currentProject: 
-      {...this.state.currentProject, content: {
-        iconsOnCanvas: newArray}
-      }})
+  // removeFromCanvas = (icon) => {
+  //   let array = [...this.state.currentProject.content.iconsOnCanvas]
+  //   let newArray = array.filter( i => i !== icon )
+  //   this.setState({currentProject: 
+  //     {...this.state.currentProject, content: {
+  //       iconsOnCanvas: newArray}
+  //     }})
    
-  }
+  // }
 
   selectIcon = (icon) => {
       this.setState( { selectedIcon: icon })
@@ -195,6 +227,7 @@ class App extends Component {
         <div className="in-container">
         <Canvas 
             handleDrag={this.handleDrag} 
+            handleResize={this.handleResize} 
             iconsOnCanvas={this.state.currentProject.content.iconsOnCanvas}
             templatesOnCanvas={this.state.currentProject.content.templatesOnCanvas}
             canvasDimensions={this.state.canvasDimensions}

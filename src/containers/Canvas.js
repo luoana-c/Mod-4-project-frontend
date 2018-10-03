@@ -11,21 +11,25 @@ const Canvas = (props) => {
         <DraggableIcon
           key={`canvas-icon-${index}`}
           handleDrag={event => props.handleDrag(icon, event)} 
+          handleResize={event => props.handleResize(icon, event)} 
           icon={icon}
           canvasDimensions={props.canvasDimensions}
           removeFromCanvas={props.removeFromCanvas}
           selectIcon={props.selectIcon}
           position={icon.pos}
+          // size={icon.size}
         />)}
       {props.templatesOnCanvas && props.templatesOnCanvas.map((template, index) =>
         <DraggableTemplate
           key={`canvas-template-${index}`}
           handleDrag={event => props.handleDrag(template, event)}
+          handleResize={event => props.handleResize(template, event)}
           template={template}
           canvasDimensions={props.canvasDimensions}
           removeFromCanvas={props.removeFromCanvas}
           selectIcon={props.selectIcon}
           position={template.pos}
+          // size={template.size}
         />)}
     </div>
   )

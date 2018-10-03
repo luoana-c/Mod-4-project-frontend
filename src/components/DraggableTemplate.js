@@ -6,6 +6,7 @@ import url from '../components/fileNameParser'
 import '../css/canvas.css'
 
 const DraggableTemplate = (props) => {
+  let checkedSize =  Object.keys(props.template.size).length === 0 ? {width: 150, height: 200} : props.template.size   
   return (
     <Draggable
       onDrag={props.handleDrag}
@@ -17,7 +18,7 @@ const DraggableTemplate = (props) => {
     >
       <Resizable
         className='draggable-template'
-        size={props.size} //Problem 
+        size={checkedSize} //Problem 
         defaultSize={{
           width: 150,
           height: 200

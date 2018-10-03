@@ -6,6 +6,7 @@ import url from '../components/iconNameParser'
 import '../css/canvas.css'
 
 const DraggableIcon = (props) => {
+  let checkedSize =  Object.keys(props.icon.size).length === 0 ? {width: 30, height: 30} : props.icon.size 
   return (
     <Draggable
       onDrag={props.handleDrag}
@@ -14,9 +15,9 @@ const DraggableIcon = (props) => {
       defaultPosition={{x: 0, y: 0}}
       zIndex={2}
     >
-      <Resizable  
+      <Resizable
         className='draggable-icon'
-        
+        size={checkedSize}
         defaultSize={{
           width: 30,
           height: 30

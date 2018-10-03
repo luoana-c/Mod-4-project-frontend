@@ -205,10 +205,17 @@ class App extends Component {
       ))
   }
 
+  addTextToCanvas = text => {
+
+  }
+
   render () {
     // saveProject().then(newProject => this.setState({ project: newProject }))
     return (
       <div className="main-container">
+        <div className="title-header">
+          <h1>Easy Mockup</h1>
+        </div>
         <div className="menu">
           <FileMenu
             saveProject={this.saveProject}

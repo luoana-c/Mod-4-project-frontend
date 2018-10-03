@@ -18,7 +18,7 @@ const DraggableTemplate = (props) => {
     >
       <Resizable
         className='draggable-template'
-        size={checkedSize} //Problem 
+        size={checkedSize} //Problem  solved
         defaultSize={{
           width: 150,
           height: 200

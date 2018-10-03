@@ -1,6 +1,6 @@
-/* div{
+div{
     border: 1px solid red;
-} */
+}
 
 #root {
     margin-left: 0;
@@ -31,7 +31,7 @@ i .draggable-icon {
     height: 16px;
 }
 
-.iconMenu {
-    margin-left: 25%;
-    margin-right: 25%;
+.button-menu {
+    overflow-y: auto;
+    max-height: 600px;  
 }

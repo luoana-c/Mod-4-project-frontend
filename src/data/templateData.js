@@ -12,6 +12,13 @@ const templateData = [
     size: {},
     selected: false,
     isTemplate: true
+  },
+  {
+    type: 'iphone',
+    pos: {},
+    size: {},
+    selected: false,
+    isTemplate: true
   }
 ]
 

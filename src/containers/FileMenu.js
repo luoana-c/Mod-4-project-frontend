@@ -42,6 +42,7 @@ export default class FileMenu extends React.Component {
         <OpenProjectButton 
         projects={this.props.projects} 
         openProject={this.props.openProject}/>
+
       </Menu>
     )
   }

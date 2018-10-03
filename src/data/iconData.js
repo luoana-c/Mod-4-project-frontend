@@ -1,5 +1,4 @@
 const iconData = [
-  {type: 'hand point up', pos: {}, selected: false},
   {type: 'add-1', pos: {}, selected: false},
   {type: 'add-2', pos: {}, selected: false},
   {type: 'add-3', pos: {}, selected: false},

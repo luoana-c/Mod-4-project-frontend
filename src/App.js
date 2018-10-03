@@ -61,7 +61,7 @@ class App extends Component {
   openProject = (project) => {
     this.setState({currentProject: 
       {...this.state.currentProject, 
-        content: { iconsOnCanvas: JSON.parse(project.content)},
+        content: JSON.parse(project.content),
         id: project.id,
         name: project.name
       }})
@@ -137,7 +137,7 @@ class App extends Component {
 
   saveProject = (projectName) => {
     
-    let project = JSON.stringify(this.state.currentProject.content.iconsOnCanvas)
+    let project = JSON.stringify(this.state.currentProject.content)
 
       const options = {
         method: "PATCH",
@@ -167,7 +167,7 @@ class App extends Component {
     .then( resp => resp.json())
     .then(newProject => this.setState({currentProject: 
       {...this.state.currentProject, 
-        content: { iconsOnCanvas: []},
+        content: { iconsOnCanvas: [], templatesOnCanvas: [] },
         id: newProject.id,
       }}
       ))

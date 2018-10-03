@@ -12,25 +12,29 @@ const DraggableTemplate = (props) => {
       bounds={props.canvasDimensions}
       position={props.position}
       defaultPosition={{x: 0, y: 0}}
+      zIndex={-2}
+      
     >
       <Resizable
+        className='draggable-template'
         defaultSize={{
           width: 150,
           height: 200
         }}
         style={{
           background: `url(${url(props.template)})`,
-          backgroundSize: 'contain', 
-          backgroundRepeat: 'no-repeat'
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          position: 'absolute'
         }}
         lockAspectRatio={true}
       >
 
-      {/* <div
+      { /* <div
         style={{width: 300, height: 421, position: 'absolute'}}
         onClick={() => {props.selectIcon(props.template)}}>
-        
-      </div> */}
+      </div> */ }
+
       </Resizable>
 
     </Draggable>

@@ -1,18 +1,19 @@
 import React from 'react'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button, Icon, Menu } from 'semantic-ui-react'
+import { Button, Image, Icon, Menu } from 'semantic-ui-react'
 
 import '../css/canvas.css'
+import url from '../components/iconNameParser'
 
 const IconMenu = (props) => {
   return (
-    <Menu icon vertical>
+    <Menu icon pointing secondary vertical>
       {props.availableIcons.map((icon, index) => {
-        return <Menu.Item 
-          name={icon.type} 
+        return <Menu.Item
+          name={icon.type}
           onClick={() => props.addToCanvas(icon)}
           key={`menu-icon-${index}`}>
-          <Icon name={icon.type} />
+           <Image src={url(icon)} size='mini' />
         </Menu.Item>
       })}
     </Menu>

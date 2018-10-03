@@ -7,8 +7,9 @@ import DraggableTemplate from '../components/DraggableTemplate';
 const Canvas = (props) => {
   return (
     <div className='canvas'>
-      {props.iconsOnCanvas && props.iconsOnCanvas.map(icon =>
+      {props.iconsOnCanvas && props.iconsOnCanvas.map((icon, index) =>
         <DraggableIcon
+          key={`canvas-icon-${index}`}
           handleDrag={event => props.handleDrag(icon, event)} 
           icon={icon}
           canvasDimensions={props.canvasDimensions}
@@ -16,9 +17,10 @@ const Canvas = (props) => {
           selectIcon={props.selectIcon}
           position={icon.pos}
         />)}
-      {props.templatesOnCanvas && props.templatesOnCanvas.map(template =>
+      {props.templatesOnCanvas && props.templatesOnCanvas.map((template, index) =>
         <DraggableTemplate
-          handleDrag={event => props.handleDrag(template, event)} 
+          key={`canvas-template-${index}`}
+          handleDrag={event => props.handleDrag(template, event)}
           template={template}
           canvasDimensions={props.canvasDimensions}
           removeFromCanvas={props.removeFromCanvas}

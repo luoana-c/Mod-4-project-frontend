@@ -159,6 +159,23 @@ class App extends Component {
    
   // }
 
+  deleteProject = (project) => {
+    console.log(project)
+    let alteredProjectList = this.state.projects.filter( filteredProject => filteredProject !== project )
+    this.setState( {...this.state, projects: alteredProjectList })
+    
+    
+    let deletedProject = JSON.stringify(project)
+
+      const options = {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(deletedProject)
+      }
+
+      return fetch(`http://localhost:3002/projects/${project.id}`, options)
+    }
+
   selectIcon = (icon) => {
       this.setState( { selectedIcon: icon })
   }
@@ -168,8 +185,10 @@ class App extends Component {
   }
 
   saveProject = (projectName) => {
-    
-    let project = JSON.stringify(this.state.currentProject.content)
+
+    if (this.state.currentProject.id !== undefined ) {
+
+      let project = JSON.stringify(this.state.currentProject.content)
 
       const options = {
         method: "PATCH",
@@ -184,6 +203,12 @@ class App extends Component {
       return fetch(`http://localhost:3002/projects/${this.state.currentProject.id}`, options)
       .then( resp => resp.json()).then( data => this.setState({projects: data }) )
     }
+    else {
+      this.newProject()
+    }
+
+    }
+    
 
   newProject = () => {
 
@@ -224,6 +249,7 @@ class App extends Component {
             projects={this.state.projects}
             projectName={this.state.currentProject.name}
             changeProjectName={this.changeProjectName}
+            deleteProject={this.deleteProject}
           />
         </div>
         <div className="button-menu in-container">

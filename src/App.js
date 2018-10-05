@@ -60,7 +60,7 @@ class App extends Component {
 
   openProject = (project) => {
     this.setState({currentProject: 
-      {...this.state.currentProject, 
+      {
         content: JSON.parse(project.content),
         id: project.id,
         name: project.name
@@ -160,6 +160,7 @@ class App extends Component {
   // }
 
   deleteProject = (project) => {
+
     console.log(project)
     let alteredProjectList = this.state.projects.filter( filteredProject => filteredProject !== project )
     this.setState( {...this.state, projects: alteredProjectList })
@@ -210,14 +211,17 @@ class App extends Component {
     }
     
 
-  newProject = () => {
+  newProject = (title='untitled') => {
 
-    let project = ''
+    let project = { 
+      iconsOnCanvas: [],
+      templatesOnCanvas: []
+    }
 
     const options = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({name:"titled", content: project, user_id: this.state.user.id})
+      body: JSON.stringify({name:title, content: JSON.stringify(project), user_id: this.state.user.id})
     }
 
     return fetch(`http://localhost:3002/projects`, options)
@@ -226,6 +230,7 @@ class App extends Component {
       {...this.state.currentProject, 
         content: { iconsOnCanvas: [], templatesOnCanvas: [] },
         id: newProject.id,
+        projects: [...this.state.projects,newProject]
       }}
       ))
   }

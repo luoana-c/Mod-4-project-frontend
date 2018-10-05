@@ -19,7 +19,10 @@ export default class NewProjectButton extends React.Component {
   render () {
     return (
       <Menu.Item>
-        <Modal onClose={this.handleClose} open={this.state.modalOpen} trigger={<Button onClick={this.handleOpen}>New Project</Button>} basic size='small'>
+        <Modal 
+        onClose={this.handleClose} 
+        open={this.state.modalOpen} 
+        trigger={<Button color='teal' onClick={this.handleOpen}>New Project</Button>} basic size='small'>
           <Header icon='archive' content='Create New Project' />
           <Modal.Content>
             <p>Are you sure you want to create a new project?</p>

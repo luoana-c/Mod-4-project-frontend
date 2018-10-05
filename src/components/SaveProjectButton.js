@@ -21,7 +21,7 @@ export default class SaveProjectButton extends React.Component {
         <Modal 
         onClose={this.handleClose} 
         open={this.state.modalOpen} 
-        trigger={<Button onClick={this.handleOpen}>Save Project</Button>} 
+        trigger={<Button color='teal' onClick={this.handleOpen}>Save Project</Button>} 
         basic size='small'>
           <Header icon='archive' content='Save Project' />
           <Modal.Content>
